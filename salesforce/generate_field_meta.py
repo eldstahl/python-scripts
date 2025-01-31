@@ -27,6 +27,30 @@ def generate_field_meta_xml(label, api_name, field_type, length, required):
     <type>Checkbox</type>
 </CustomField>
 """
+    elif field_type.lower() == 'date':
+        xml_content = f"""<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>{api_name}</fullName>
+    <label>{label}</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>DateTime</type>
+</CustomField>
+"""
+    elif field_type.lower() == 'number':
+        xml_content = f"""<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>{api_name}</fullName>
+    <externalId>false</externalId>
+    <label>{label}</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>3</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
+"""
     return xml_content
 
 # Read the CSV file and generate .field-meta.xml files
